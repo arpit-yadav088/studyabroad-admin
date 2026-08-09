@@ -49,13 +49,6 @@ export default function LoginPage() {
       return;
     }
 
-    /*
-      NextAuth authentication successful hone ke baad
-      DummyJSON ka access token NextAuth session me available hoga.
-
-      Abhi hum authentication flow test kar rahe hain.
-    */
-
     setToken("authenticated");
 
     setLoading(false);
@@ -86,7 +79,7 @@ export default function LoginPage() {
           }}
         >
           <Stack spacing={3}>
-            <Box textAlign="center">
+            <Box sx={{ textAlign: "center" }}>
               <Box
                 sx={{
                   width: 64,
