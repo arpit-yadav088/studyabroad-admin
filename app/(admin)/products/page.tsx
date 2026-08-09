@@ -76,12 +76,13 @@ export default function ProductsPage() {
       }}
     >
       <Container maxWidth="xl">
-
         {/* Header */}
         <Typography
           variant="h4"
-          fontWeight={700}
-          sx={{ mb: 3 }}
+          sx={{
+            fontWeight: 700,
+            mb: 3,
+          }}
         >
           Products
         </Typography>
@@ -102,9 +103,7 @@ export default function ProductsPage() {
             label="Search products"
             placeholder="Search by product name..."
             value={search}
-            onChange={(event) =>
-              handleSearch(event.target.value)
-            }
+            onChange={(event) => handleSearch(event.target.value)}
             sx={{
               width: {
                 xs: "100%",
@@ -133,23 +132,13 @@ export default function ProductsPage() {
                 handleCategory(event.target.value)
               }
             >
-              <MenuItem value="">
-                All Categories
-              </MenuItem>
+              <MenuItem value="">All Categories</MenuItem>
 
               <MenuItem value="beauty">Beauty</MenuItem>
-              <MenuItem value="fragrances">
-                Fragrances
-              </MenuItem>
-              <MenuItem value="furniture">
-                Furniture
-              </MenuItem>
-              <MenuItem value="groceries">
-                Groceries
-              </MenuItem>
-              <MenuItem value="laptops">
-                Laptops
-              </MenuItem>
+              <MenuItem value="fragrances">Fragrances</MenuItem>
+              <MenuItem value="furniture">Furniture</MenuItem>
+              <MenuItem value="groceries">Groceries</MenuItem>
+              <MenuItem value="laptops">Laptops</MenuItem>
               <MenuItem value="mens-shirts">
                 Men's Shirts
               </MenuItem>
@@ -222,7 +211,7 @@ export default function ProductsPage() {
             <CircularProgress />
           </Box>
         ) : products.length === 0 ? (
-          /* Empty state */
+          /* Empty State */
           <Box
             sx={{
               minHeight: 300,
@@ -284,8 +273,8 @@ export default function ProductsPage() {
                       {/* Title */}
                       <Typography
                         variant="h6"
-                        fontWeight={700}
                         sx={{
+                          fontWeight: 700,
                           mb: 1,
                           display: "-webkit-box",
                           WebkitLineClamp: 2,
@@ -329,8 +318,10 @@ export default function ProductsPage() {
                       {/* Price */}
                       <Typography
                         variant="h6"
-                        fontWeight={700}
-                        sx={{ mb: 1 }}
+                        sx={{
+                          fontWeight: 700,
+                          mb: 1,
+                        }}
                       >
                         ${product.price}
                       </Typography>
@@ -394,4 +385,3 @@ export default function ProductsPage() {
     </Box>
   );
 }
-

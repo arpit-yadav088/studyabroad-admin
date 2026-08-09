@@ -1,11 +1,9 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import {
-  Alert,
   Avatar,
   Box,
   Button,
@@ -34,7 +32,6 @@ export default function UserDetailsPage() {
         setError("");
 
         const id = String(params.id);
-
         const data = await getUserById(id);
 
         setUser(data);
@@ -70,7 +67,7 @@ export default function UserDetailsPage() {
   if (error) {
     return (
       <Container sx={{ py: 4 }}>
-        <Alert severity="error">{error}</Alert>
+        <Typography color="error">{error}</Typography>
 
         <Button
           variant="contained"
@@ -136,7 +133,10 @@ export default function UserDetailsPage() {
           />
 
           <Box>
-            <Typography variant="h4" fontWeight={700}>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: 700 }}
+            >
               {user.firstName} {user.lastName}
             </Typography>
 
@@ -155,8 +155,10 @@ export default function UserDetailsPage() {
       <Paper elevation={2} sx={{ p: 4, mb: 3 }}>
         <Typography
           variant="h5"
-          fontWeight={700}
-          sx={{ mb: 3 }}
+          sx={{
+            fontWeight: 700,
+            mb: 3,
+          }}
         >
           Personal Information
         </Typography>
@@ -167,7 +169,7 @@ export default function UserDetailsPage() {
               First Name
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.firstName}
             </Typography>
           </Grid>
@@ -177,7 +179,7 @@ export default function UserDetailsPage() {
               Last Name
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.lastName}
             </Typography>
           </Grid>
@@ -187,7 +189,7 @@ export default function UserDetailsPage() {
               Age
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.age}
             </Typography>
           </Grid>
@@ -197,7 +199,7 @@ export default function UserDetailsPage() {
               Gender
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.gender}
             </Typography>
           </Grid>
@@ -207,7 +209,7 @@ export default function UserDetailsPage() {
               Email
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.email}
             </Typography>
           </Grid>
@@ -217,7 +219,7 @@ export default function UserDetailsPage() {
               Phone
             </Typography>
 
-            <Typography fontWeight={600}>
+            <Typography sx={{ fontWeight: 600 }}>
               {user.phone}
             </Typography>
           </Grid>
@@ -229,8 +231,10 @@ export default function UserDetailsPage() {
         <Paper elevation={2} sx={{ p: 4, mb: 3 }}>
           <Typography
             variant="h5"
-            fontWeight={700}
-            sx={{ mb: 3 }}
+            sx={{
+              fontWeight: 700,
+              mb: 3,
+            }}
           >
             Address
           </Typography>
@@ -258,8 +262,10 @@ export default function UserDetailsPage() {
         <Paper elevation={2} sx={{ p: 4 }}>
           <Typography
             variant="h5"
-            fontWeight={700}
-            sx={{ mb: 3 }}
+            sx={{
+              fontWeight: 700,
+              mb: 3,
+            }}
           >
             Company
           </Typography>
@@ -270,7 +276,7 @@ export default function UserDetailsPage() {
                 Company Name
               </Typography>
 
-              <Typography fontWeight={600}>
+              <Typography sx={{ fontWeight: 600 }}>
                 {user.company.name}
               </Typography>
             </Grid>
@@ -280,7 +286,7 @@ export default function UserDetailsPage() {
                 Department
               </Typography>
 
-              <Typography fontWeight={600}>
+              <Typography sx={{ fontWeight: 600 }}>
                 {user.company.department}
               </Typography>
             </Grid>
@@ -290,7 +296,7 @@ export default function UserDetailsPage() {
                 Job Title
               </Typography>
 
-              <Typography fontWeight={600}>
+              <Typography sx={{ fontWeight: 600 }}>
                 {user.company.title}
               </Typography>
             </Grid>

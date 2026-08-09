@@ -49,6 +49,7 @@ export default function DashboardPage() {
     loadDashboard();
   }, []);
 
+  // Loading state
   if (loading) {
     return (
       <Box
@@ -72,14 +73,15 @@ export default function DashboardPage() {
         bgcolor: "background.default",
       }}
     >
-      <Container maxWidth="xl">
-
+      <Container maxWidth="lg">
         {/* Header */}
         <Box sx={{ mb: 4 }}>
           <Typography
             variant="h4"
-            fontWeight={700}
-            sx={{ mb: 1 }}
+            sx={{
+              fontWeight: 700,
+              mb: 1,
+            }}
           >
             Dashboard
           </Typography>
@@ -91,7 +93,6 @@ export default function DashboardPage() {
 
         {/* Statistics */}
         <Grid container spacing={3}>
-
           {/* Users */}
           <Grid
             size={{
@@ -128,7 +129,9 @@ export default function DashboardPage() {
 
                     <Typography
                       variant="h3"
-                      fontWeight={700}
+                      sx={{
+                        fontWeight: 700,
+                      }}
                     >
                       {usersCount}
                     </Typography>
@@ -189,7 +192,9 @@ export default function DashboardPage() {
 
                     <Typography
                       variant="h3"
-                      fontWeight={700}
+                      sx={{
+                        fontWeight: 700,
+                      }}
                     >
                       {productsCount}
                     </Typography>
@@ -226,8 +231,10 @@ export default function DashboardPage() {
               <CardContent>
                 <Typography
                   variant="h6"
-                  fontWeight={700}
-                  sx={{ mb: 2 }}
+                  sx={{
+                    fontWeight: 700,
+                    mb: 2,
+                  }}
                 >
                   Quick Actions
                 </Typography>
@@ -251,7 +258,6 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </Grid>
-
         </Grid>
       </Container>
     </Box>

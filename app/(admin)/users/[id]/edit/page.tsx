@@ -39,6 +39,10 @@ export default function EditUserPage() {
     gender: "",
   });
 
+  // =========================
+  // Fetch User
+  // =========================
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -73,6 +77,10 @@ export default function EditUserPage() {
     fetchUser();
   }, [params.id]);
 
+  // =========================
+  // Handle Input Change
+  // =========================
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -83,6 +91,10 @@ export default function EditUserPage() {
       [name]: value,
     }));
   };
+
+  // =========================
+  // Submit Form
+  // =========================
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -123,6 +135,10 @@ export default function EditUserPage() {
     }
   };
 
+  // =========================
+  // Loading
+  // =========================
+
   if (loading) {
     return (
       <Box
@@ -138,12 +154,16 @@ export default function EditUserPage() {
     );
   }
 
+  // =========================
+  // User Not Found
+  // =========================
+
   if (!user) {
     return (
       <Container sx={{ py: 4 }}>
-        <Alert severity="error">
+        <Typography color="error">
           {error || "User not found"}
-        </Alert>
+        </Typography>
 
         <Button
           variant="contained"
@@ -156,8 +176,14 @@ export default function EditUserPage() {
     );
   }
 
+  // =========================
+  // Main UI
+  // =========================
+
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
+      {/* Back Button */}
+
       <Button
         variant="outlined"
         sx={{ mb: 3 }}
@@ -175,10 +201,14 @@ export default function EditUserPage() {
           },
         }}
       >
+        {/* Heading */}
+
         <Typography
           variant="h4"
-          fontWeight={700}
-          sx={{ mb: 1 }}
+          sx={{
+            fontWeight: 700,
+            mb: 1,
+          }}
         >
           Edit User
         </Typography>
@@ -190,6 +220,8 @@ export default function EditUserPage() {
           Update user information
         </Typography>
 
+        {/* Error */}
+
         {error && (
           <Alert
             severity="error"
@@ -198,6 +230,8 @@ export default function EditUserPage() {
             {error}
           </Alert>
         )}
+
+        {/* Success */}
 
         {success && (
           <Alert
@@ -208,11 +242,15 @@ export default function EditUserPage() {
           </Alert>
         )}
 
+        {/* Form */}
+
         <Box
           component="form"
           onSubmit={handleSubmit}
         >
           <Grid container spacing={3}>
+            {/* First Name */}
+
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
@@ -224,6 +262,8 @@ export default function EditUserPage() {
               />
             </Grid>
 
+            {/* Last Name */}
+
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
@@ -234,6 +274,8 @@ export default function EditUserPage() {
                 required
               />
             </Grid>
+
+            {/* Email */}
 
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
@@ -247,6 +289,8 @@ export default function EditUserPage() {
               />
             </Grid>
 
+            {/* Phone */}
+
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
@@ -257,6 +301,8 @@ export default function EditUserPage() {
                 required
               />
             </Grid>
+
+            {/* Age */}
 
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
@@ -270,6 +316,8 @@ export default function EditUserPage() {
               />
             </Grid>
 
+            {/* Gender */}
+
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
@@ -281,12 +329,15 @@ export default function EditUserPage() {
               />
             </Grid>
 
+            {/* Buttons */}
+
             <Grid size={{ xs: 12 }}>
               <Box
                 sx={{
                   display: "flex",
                   gap: 2,
                   justifyContent: "flex-end",
+                  flexWrap: "wrap",
                 }}
               >
                 <Button

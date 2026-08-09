@@ -1,11 +1,9 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import {
-  Alert,
   Box,
   Button,
   CircularProgress,
@@ -50,6 +48,7 @@ export default function ProductDetailsPage() {
     fetchProduct();
   }, [params.id]);
 
+  // Loading
   if (loading) {
     return (
       <Box
@@ -65,10 +64,11 @@ export default function ProductDetailsPage() {
     );
   }
 
+  // Error
   if (error) {
     return (
       <Container sx={{ py: 4 }}>
-        <Alert severity="error">{error}</Alert>
+        <Typography color="error">{error}</Typography>
 
         <Button
           variant="contained"
@@ -81,6 +81,7 @@ export default function ProductDetailsPage() {
     );
   }
 
+  // Product not found
   if (!product) {
     return (
       <Container sx={{ py: 4 }}>
@@ -99,6 +100,7 @@ export default function ProductDetailsPage() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
+      {/* Back Button */}
       <Button
         variant="outlined"
         sx={{ mb: 3 }}
@@ -107,6 +109,7 @@ export default function ProductDetailsPage() {
         ← Back to Products
       </Button>
 
+      {/* Product Card */}
       <Paper
         elevation={2}
         sx={{
@@ -143,8 +146,10 @@ export default function ProductDetailsPage() {
           <Box>
             <Typography
               variant="h4"
-              fontWeight={700}
-              sx={{ mb: 2 }}
+              sx={{
+                fontWeight: 700,
+                mb: 2,
+              }}
             >
               {product.title}
             </Typography>
@@ -158,35 +163,32 @@ export default function ProductDetailsPage() {
 
             <Typography
               variant="h5"
-              fontWeight={700}
-              sx={{ mb: 2 }}
+              sx={{
+                fontWeight: 700,
+                mb: 2,
+              }}
             >
               ${product.price}
             </Typography>
 
             <Typography sx={{ mb: 1 }}>
-              <strong>Category:</strong>{" "}
-              {product.category}
+              <strong>Category:</strong> {product.category}
             </Typography>
 
             <Typography sx={{ mb: 1 }}>
-              <strong>Rating:</strong>{" "}
-              {product.rating}
+              <strong>Rating:</strong> {product.rating}
             </Typography>
 
             <Typography sx={{ mb: 1 }}>
-              <strong>Stock:</strong>{" "}
-              {product.stock}
+              <strong>Stock:</strong> {product.stock}
             </Typography>
 
             <Typography sx={{ mb: 1 }}>
-              <strong>Brand:</strong>{" "}
-              {product.brand || "N/A"}
+              <strong>Brand:</strong> {product.brand || "N/A"}
             </Typography>
 
             <Typography sx={{ mb: 1 }}>
-              <strong>SKU:</strong>{" "}
-              {product.sku || "N/A"}
+              <strong>SKU:</strong> {product.sku || "N/A"}
             </Typography>
 
             {product.discountPercentage !== undefined && (
@@ -209,4 +211,3 @@ export default function ProductDetailsPage() {
     </Container>
   );
 }
-
