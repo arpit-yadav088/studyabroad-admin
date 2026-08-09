@@ -3,9 +3,6 @@ import { User } from "@/types/user";
 
 const BASE_URL = "https://dummyjson.com";
 
-// =========================
-// Authentication
-// =========================
 
 export async function loginUser(
   username: string,
@@ -31,9 +28,6 @@ export async function loginUser(
   return data;
 }
 
-// =========================
-// Users
-// =========================
 
 export async function getUsers(
   limit = 10,
@@ -55,7 +49,15 @@ export async function getUsers(
   return response.json();
 }
 
-export async function searchUsers(query: string) {
+
+export async function searchUsers(
+  query: string
+): Promise<{
+  users: User[];
+  total: number;
+  skip: number;
+  limit: number;
+}> {
   const response = await fetch(
     `${BASE_URL}/users/search?q=${encodeURIComponent(query)}`
   );
@@ -81,9 +83,6 @@ export async function getUserById(
   return response.json();
 }
 
-// =========================
-// Update User
-// =========================
 
 export async function updateUser(
   id: string,
@@ -111,10 +110,6 @@ export async function updateUser(
   return data;
 }
 
-// =========================
-// Delete User
-// =========================
-
 export async function deleteUser(
   id: number
 ): Promise<User> {
@@ -136,10 +131,6 @@ export async function deleteUser(
   return data;
 }
 
-// =========================
-// Products
-// =========================
-
 export async function getProducts(
   limit = 10,
   skip = 0
@@ -160,7 +151,14 @@ export async function getProducts(
   return response.json();
 }
 
-export async function searchProducts(query: string) {
+export async function searchProducts(
+  query: string
+): Promise<{
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}> {
   const response = await fetch(
     `${BASE_URL}/products/search?q=${encodeURIComponent(query)}`
   );
@@ -174,7 +172,12 @@ export async function searchProducts(query: string) {
 
 export async function getProductsByCategory(
   category: string
-) {
+): Promise<{
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}> {
   const response = await fetch(
     `${BASE_URL}/products/category/${encodeURIComponent(
       category
@@ -182,11 +185,14 @@ export async function getProductsByCategory(
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch products by category");
+    throw new Error(
+      "Failed to fetch products by category"
+    );
   }
 
   return response.json();
 }
+
 
 export async function getProductById(
   id: string

@@ -47,10 +47,6 @@ export const useUserStore = create<UserState>((set, get) => ({
 
   search: "",
 
-  // =========================
-  // Fetch Users
-  // =========================
-
   fetchUsers: async (page = get().page) => {
     try {
       set({
@@ -59,7 +55,6 @@ export const useUserStore = create<UserState>((set, get) => ({
       });
 
       const limit = get().limit;
-
       const skip = (page - 1) * limit;
 
       const data = await getUsers(limit, skip);
@@ -80,10 +75,6 @@ export const useUserStore = create<UserState>((set, get) => ({
       });
     }
   },
-
-  // =========================
-  // Search Users
-  // =========================
 
   searchUser: async (query: string) => {
     try {
@@ -116,10 +107,6 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
   },
 
-  // =========================
-  // Update User
-  // =========================
-
   updateUserData: async (id, userData) => {
     try {
       set({
@@ -127,13 +114,17 @@ export const useUserStore = create<UserState>((set, get) => ({
         error: null,
       });
 
-      const updatedUser = await updateUser(id, userData);
+      const updatedUser = await updateUser(String(id), userData);
 
       set((state) => ({
         users: state.users.map((user) =>
-          user.id === id ? { ...user, ...updatedUser } : user
+          user.id === id
+            ? {
+                ...user,
+                ...updatedUser,
+              }
+            : user
         ),
-
         loading: false,
       }));
     } catch (error) {
@@ -149,10 +140,6 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
   },
 
-  // =========================
-  // Delete User
-  // =========================
-
   deleteUserData: async (id) => {
     try {
       set({
@@ -164,9 +151,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
       set((state) => ({
         users: state.users.filter((user) => user.id !== id),
-
         total: state.total - 1,
-
         loading: false,
       }));
     } catch (error) {
@@ -182,17 +167,9 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
   },
 
-  // =========================
-  // Pagination
-  // =========================
-
   setPage: (page) => {
     set({ page });
   },
-
-  // =========================
-  // Search
-  // =========================
 
   setSearch: (search) => {
     set({ search });

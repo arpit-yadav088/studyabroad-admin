@@ -39,7 +39,7 @@ export default function AdminLayout({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setMobileOpen((prev) => !prev);
   };
 
   const handleNavigation = (path: string) => {
@@ -72,21 +72,40 @@ export default function AdminLayout({
   ];
 
   const drawer = (
-    <Box>
-      <Toolbar>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        py: 2,
+      }}
+    >
+      {/* Logo / Title */}
+      <Box
+        sx={{
+          px: 2,
+          mb: 2,
+        }}
+      >
         <Typography
           variant="h6"
-          fontWeight={700}
+          sx={{
+            fontWeight: 700,
+          }}
         >
           Study Abroad
         </Typography>
-      </Toolbar>
+      </Box>
 
+      {/* Navigation */}
       <List>
         {menuItems.map((item) => (
           <ListItemButton
             key={item.path}
-            selected={pathname === item.path}
+            selected={
+              pathname === item.path ||
+              pathname.startsWith(`${item.path}/`)
+            }
             onClick={() => handleNavigation(item.path)}
           >
             <ListItemIcon>
@@ -100,7 +119,13 @@ export default function AdminLayout({
         ))}
       </List>
 
-      <Box sx={{ px: 2, mt: 2 }}>
+      {/* Logout */}
+      <Box
+        sx={{
+          px: 2,
+          mt: "auto",
+        }}
+      >
         <Button
           fullWidth
           variant="outlined"
@@ -116,7 +141,6 @@ export default function AdminLayout({
 
   return (
     <Box sx={{ display: "flex" }}>
-
       {/* Header */}
       <AppBar
         position="fixed"
@@ -130,7 +154,6 @@ export default function AdminLayout({
         }}
       >
         <Toolbar>
-
           {/* Mobile Menu */}
           <IconButton
             color="inherit"
@@ -150,14 +173,16 @@ export default function AdminLayout({
             variant="h6"
             noWrap
             component="div"
+            sx={{
+              fontWeight: 700,
+            }}
           >
             Admin Panel
           </Typography>
-
         </Toolbar>
       </AppBar>
 
-      {/* Desktop Sidebar */}
+      {/* Sidebar */}
       <Box
         component="nav"
         sx={{
@@ -169,6 +194,7 @@ export default function AdminLayout({
           },
         }}
       >
+        {/* Desktop Sidebar */}
         <Drawer
           variant="permanent"
           sx={{
@@ -223,7 +249,6 @@ export default function AdminLayout({
       >
         {children}
       </Box>
-
     </Box>
   );
 }

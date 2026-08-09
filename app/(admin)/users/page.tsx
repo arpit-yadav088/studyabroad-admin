@@ -7,7 +7,6 @@ import {
   Alert,
   Avatar,
   Box,
-  Button,
   Chip,
   CircularProgress,
   Container,
@@ -60,10 +59,10 @@ export default function UsersPage() {
   const handleDelete = async (
     id: number,
     firstName: string,
-    lastName: string,
+    lastName: string
   ) => {
     const confirmed = window.confirm(
-      `Are you sure you want to delete ${firstName} ${lastName}?`,
+      `Are you sure you want to delete ${firstName} ${lastName}?`
     );
 
     if (!confirmed) {
@@ -104,7 +103,13 @@ export default function UsersPage() {
           }}
         >
           <Box>
-            <Typography variant="h4" fontWeight={700} sx={{ mb: 1 }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 700,
+                mb: 1,
+              }}
+            >
               Users
             </Typography>
 
@@ -167,7 +172,9 @@ export default function UsersPage() {
                 justifyContent: "center",
               }}
             >
-              <Typography color="text.secondary">No users found.</Typography>
+              <Typography color="text.secondary">
+                No users found.
+              </Typography>
             </Box>
           ) : (
             <TableContainer>
@@ -205,7 +212,13 @@ export default function UsersPage() {
                     <TableRow key={user.id} hover>
                       {/* User */}
                       <TableCell>
-                        <Stack direction="row" spacing={2} alignItems="center">
+                        <Stack
+                          direction="row"
+                          spacing={2}
+                          sx={{
+                            alignItems: "center",
+                          }}
+                        >
                           <Avatar
                             src={user.image}
                             alt={`${user.firstName} ${user.lastName}`}
@@ -214,11 +227,18 @@ export default function UsersPage() {
                           </Avatar>
 
                           <Box>
-                            <Typography fontWeight={600}>
+                            <Typography
+                              sx={{
+                                fontWeight: 600,
+                              }}
+                            >
                               {user.firstName} {user.lastName}
                             </Typography>
 
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography
+                              variant="body2"
+                              color="text.secondary"
+                            >
                               @{user.username}
                             </Typography>
                           </Box>
@@ -241,35 +261,46 @@ export default function UsersPage() {
                       <TableCell>{user.phone}</TableCell>
 
                       {/* Company */}
-                      <TableCell>{user.company?.name || "—"}</TableCell>
+                      <TableCell>
+                        {user.company?.name || "—"}
+                      </TableCell>
 
                       {/* Actions */}
                       <TableCell align="right">
                         <Stack
                           direction="row"
                           spacing={0.5}
-                          justifyContent="flex-end"
+                          sx={{
+                            justifyContent: "flex-end",
+                          }}
                         >
+                          {/* View */}
                           <Tooltip title="View Details">
                             <IconButton
                               color="primary"
-                              onClick={() => router.push(`/users/${user.id}`)}
+                              onClick={() =>
+                                router.push(`/users/${user.id}`)
+                              }
                             >
                               <VisibilityIcon />
                             </IconButton>
                           </Tooltip>
 
+                          {/* Edit */}
                           <Tooltip title="Edit User">
                             <IconButton
                               color="secondary"
                               onClick={() =>
-                                router.push(`/users/${user.id}/edit`)
+                                router.push(
+                                  `/users/${user.id}/edit`
+                                )
                               }
                             >
                               <EditIcon />
                             </IconButton>
                           </Tooltip>
 
+                          {/* Delete */}
                           <Tooltip title="Delete User">
                             <IconButton
                               color="error"
@@ -277,7 +308,7 @@ export default function UsersPage() {
                                 handleDelete(
                                   user.id,
                                   user.firstName,
-                                  user.lastName,
+                                  user.lastName
                                 )
                               }
                             >
